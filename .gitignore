@@ -1,2 +1,23 @@
 *.exe
 .vscode
+
+# Test build directories
+tests/build/
+tests/CMakeCache.txt
+tests/CMakeFiles/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+
+# Build artifacts
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
