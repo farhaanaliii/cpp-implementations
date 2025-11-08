@@ -8,7 +8,7 @@ const char BASE62_CHARS[62] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 static int BASE62_LOOKUP[256];
 static bool lookup_initialized = false;
 
-void init_base62_lookup(){
+inline void init_base62_lookup(){
     if(lookup_initialized) return;
     
     std::memset(BASE62_LOOKUP, -1, sizeof(BASE62_LOOKUP));
@@ -18,12 +18,12 @@ void init_base62_lookup(){
     lookup_initialized = true;
 }
 
-int is_base62(char c){
+inline int is_base62(char c){
     init_base62_lookup();
     return BASE62_LOOKUP[(unsigned char)c];
 }
 
-std::string base62_encode(const std::string &text){
+inline std::string base62_encode(const std::string &text){
 	if(text.empty()) return "";
 	
 	std::string result;
@@ -50,7 +50,7 @@ std::string base62_encode(const std::string &text){
 	return result;
 }
 
-std::string base62_decode(const std::string &encoded){
+inline std::string base62_decode(const std::string &encoded){
     if(encoded.empty()) return "";
     
     init_base62_lookup();

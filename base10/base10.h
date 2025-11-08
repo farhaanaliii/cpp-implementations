@@ -1,7 +1,7 @@
 #include <string>
 #include <sstream>
 
-std::string base10_encode(const std::string &text){
+inline std::string base10_encode(const std::string &text){
 	if(text.empty()) return "";
 	
 	std::ostringstream oss;
@@ -14,7 +14,7 @@ std::string base10_encode(const std::string &text){
 	return oss.str();
 }
 
-std::string base10_decode(const std::string &encoded){
+inline std::string base10_decode(const std::string &encoded){
     if(encoded.empty()) return "";
     
     std::string decoded_str;

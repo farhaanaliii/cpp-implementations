@@ -9,7 +9,7 @@ const char BASE32_CHARS[32] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
 static int BASE32_LOOKUP[256];
 static bool lookup_initialized = false;
 
-void init_base32_lookup(){
+inline void init_base32_lookup(){
     if(lookup_initialized) return;
     
     std::memset(BASE32_LOOKUP, -1, sizeof(BASE32_LOOKUP));
@@ -19,14 +19,14 @@ void init_base32_lookup(){
     lookup_initialized = true;
 }
 
-int is_base32(char c){
+inline int is_base32(char c){
     init_base32_lookup();
     return BASE32_LOOKUP[(unsigned char)c];
 }
 
 // direction: 1 => left
 // direction: 0 => right
-std::string str_pad(const std::string &str, int pad_len, char pad_char, int direction){
+inline std::string str_pad(const std::string &str, int pad_len, char pad_char, int direction){
 	if(str.length() >= pad_len){
 		return str;
 	}
@@ -48,7 +48,7 @@ std::string str_pad(const std::string &str, int pad_len, char pad_char, int dire
 }
 
 
-std::string base32_encode(const std::string &text){
+inline std::string base32_encode(const std::string &text){
 	if(text.empty()) return "";
 	
 	std::string bin_str;
@@ -77,7 +77,7 @@ std::string base32_encode(const std::string &text){
 	return base32_str;
 }
 
-std::string base32_decode(const std::string &encoded){
+inline std::string base32_decode(const std::string &encoded){
     if(encoded.empty()) return "";
     
     init_base32_lookup();

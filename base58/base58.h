@@ -9,7 +9,7 @@ const char BASE58_CHARS[58] = {'1', '2', '3', '4', '5', '6', '7', '8', '9', 'A',
 static int BASE58_LOOKUP[256];
 static bool lookup_initialized = false;
 
-void init_base58_lookup(){
+inline void init_base58_lookup(){
     if(lookup_initialized) return;
     
     std::memset(BASE58_LOOKUP, -1, sizeof(BASE58_LOOKUP));
@@ -19,12 +19,12 @@ void init_base58_lookup(){
     lookup_initialized = true;
 }
 
-int is_base58(char c){
+inline int is_base58(char c){
     init_base58_lookup();
     return BASE58_LOOKUP[(unsigned char)c];
 }
 
-std::string base58_encode(const std::string &text){
+inline std::string base58_encode(const std::string &text){
 	if(text.empty()) return "";
 	
 	std::vector<unsigned char> digits;
@@ -56,7 +56,7 @@ std::string base58_encode(const std::string &text){
 	return result.empty() ? std::string(1, BASE58_CHARS[0]) : result;
 }
 
-std::string base58_decode(const std::string &encoded){
+inline std::string base58_decode(const std::string &encoded){
     if(encoded.empty()) return "";
     
     init_base58_lookup();

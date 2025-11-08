@@ -8,7 +8,7 @@ const char BASE16_CHARS[16] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 static int BASE16_LOOKUP[256];
 static bool lookup_initialized = false;
 
-void init_base16_lookup(){
+inline void init_base16_lookup(){
     if(lookup_initialized) return;
     
     std::memset(BASE16_LOOKUP, -1, sizeof(BASE16_LOOKUP));
@@ -21,12 +21,12 @@ void init_base16_lookup(){
     lookup_initialized = true;
 }
 
-int is_base16(char c){
+inline int is_base16(char c){
     init_base16_lookup();
     return BASE16_LOOKUP[(unsigned char)c];
 }
 
-std::string base16_encode(const std::string &text){
+inline std::string base16_encode(const std::string &text){
 	if(text.empty()) return "";
 	
 	std::string hex_str;
@@ -41,7 +41,7 @@ std::string base16_encode(const std::string &text){
 	return hex_str;
 }
 
-std::string base16_decode(const std::string &encoded){
+inline std::string base16_decode(const std::string &encoded){
     if(encoded.empty()) return "";
     if(encoded.length() % 2 != 0){
         throw std::runtime_error("Invalid base16 length");

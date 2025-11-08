@@ -7,7 +7,7 @@ const char BASE85_CHARS[85] = {'!', '"', '#', '$', '%', '&', '\'', '(', ')', '*'
 static int BASE85_LOOKUP[256];
 static bool lookup_initialized = false;
 
-void init_base85_lookup(){
+inline void init_base85_lookup(){
     if(lookup_initialized) return;
     
     std::memset(BASE85_LOOKUP, -1, sizeof(BASE85_LOOKUP));
@@ -17,12 +17,12 @@ void init_base85_lookup(){
     lookup_initialized = true;
 }
 
-int is_base85(char c){
+inline int is_base85(char c){
     init_base85_lookup();
     return BASE85_LOOKUP[(unsigned char)c];
 }
 
-std::string base85_encode(const std::string &text){
+inline std::string base85_encode(const std::string &text){
 	if(text.empty()) return "";
 	
 	std::string result = "<~";
@@ -60,7 +60,7 @@ std::string base85_encode(const std::string &text){
 	return result;
 }
 
-std::string base85_decode(const std::string &encoded){
+inline std::string base85_decode(const std::string &encoded){
     if(encoded.empty()) return "";
     
     init_base85_lookup();

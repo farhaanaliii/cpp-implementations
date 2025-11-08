@@ -8,7 +8,7 @@ const char BASE36_CHARS[36] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 static int BASE36_LOOKUP[256];
 static bool lookup_initialized = false;
 
-void init_base36_lookup(){
+inline void init_base36_lookup(){
     if(lookup_initialized) return;
     
     std::memset(BASE36_LOOKUP, -1, sizeof(BASE36_LOOKUP));
@@ -21,12 +21,12 @@ void init_base36_lookup(){
     lookup_initialized = true;
 }
 
-int is_base36(char c){
+inline int is_base36(char c){
     init_base36_lookup();
     return BASE36_LOOKUP[(unsigned char)c];
 }
 
-std::string base36_encode(const std::string &text){
+inline std::string base36_encode(const std::string &text){
 	if(text.empty()) return "";
 	
 	std::string result;
@@ -53,7 +53,7 @@ std::string base36_encode(const std::string &text){
 	return result;
 }
 
-std::string base36_decode(const std::string &encoded){
+inline std::string base36_decode(const std::string &encoded){
     if(encoded.empty()) return "";
     
     init_base36_lookup();

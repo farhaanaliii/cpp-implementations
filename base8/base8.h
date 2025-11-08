@@ -8,7 +8,7 @@ const char BASE8_CHARS[8] = {'0', '1', '2', '3', '4', '5', '6', '7'};
 static int BASE8_LOOKUP[256];
 static bool lookup_initialized = false;
 
-void init_base8_lookup(){
+inline void init_base8_lookup(){
     if(lookup_initialized) return;
     
     std::memset(BASE8_LOOKUP, -1, sizeof(BASE8_LOOKUP));
@@ -18,12 +18,12 @@ void init_base8_lookup(){
     lookup_initialized = true;
 }
 
-int is_base8(char c){
+inline int is_base8(char c){
     init_base8_lookup();
     return BASE8_LOOKUP[(unsigned char)c];
 }
 
-std::string str_pad(const std::string &str, int pad_len, char pad_char, int direction){
+inline std::string str_pad(const std::string &str, int pad_len, char pad_char, int direction){
 	if(str.length() >= pad_len){
 		return str;
 	}
@@ -44,7 +44,7 @@ std::string str_pad(const std::string &str, int pad_len, char pad_char, int dire
 	return _str;
 }
 
-std::string base8_encode(const std::string &text){
+inline std::string base8_encode(const std::string &text){
 	if(text.empty()) return "";
 	
 	std::string bin_str;
@@ -67,7 +67,7 @@ std::string base8_encode(const std::string &text){
 	return base8_str;
 }
 
-std::string base8_decode(const std::string &encoded){
+inline std::string base8_decode(const std::string &encoded){
     if(encoded.empty()) return "";
     
     init_base8_lookup();

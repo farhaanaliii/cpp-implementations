@@ -1,7 +1,7 @@
 #include <string>
 #include <bitset>
 
-std::string base2_encode(const std::string &text){
+inline std::string base2_encode(const std::string &text){
 	if(text.empty()) return "";
 	
 	std::string bin_str;
@@ -14,7 +14,7 @@ std::string base2_encode(const std::string &text){
 	return bin_str;
 }
 
-std::string base2_decode(const std::string &encoded){
+inline std::string base2_decode(const std::string &encoded){
     if(encoded.empty()) return "";
     
     std::string decoded_str;
